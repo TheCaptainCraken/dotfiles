@@ -83,18 +83,12 @@ local plugins = {
 		"epwalsh/obsidian.nvim",
 		version = "*", -- recommended, use latest release instead of latest commit
 		lazy = false,
-		-- event = {
-		-- 	-- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
-		-- 	-- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/**.md"
-		-- 	"BufReadPre "
-		-- 		.. vim.fn.expand("~")
-		-- 		.. "/archive/archive/**.md",
-		-- 	"BufNewFile " .. vim.fn.expand("~") .. "Documents/obsidian/archive/archive/**.md",
-		-- },
 		dependencies = {
 			-- Required.
 			"nvim-lua/plenary.nvim",
-
+			"hrsh7th/nvim-cmp",
+			"nvim-telescope/telescope.nvim",
+			"nvim-treesitter",
 			-- see below for full list of optional dependencies 👇
 		},
 		opts = {
@@ -103,6 +97,10 @@ local plugins = {
 					name = "archive",
 					path = "~/Documents/obsidian/archive/archive",
 				},
+			},
+			completion = {
+				nvim_cmp = true,
+				min_chars = 2,
 			},
 
 			-- see below for full list of options 👇
