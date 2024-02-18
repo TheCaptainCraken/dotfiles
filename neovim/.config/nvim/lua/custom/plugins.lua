@@ -82,7 +82,14 @@ local plugins = {
 	{
 		"epwalsh/obsidian.nvim",
 		version = "*", -- recommended, use latest release instead of latest commit
-		lazy = false,
+		event = {
+			-- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
+			-- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/**.md"
+			"BufReadPre"
+				.. vim.expand("~")
+				.. "/Documents/obsidian/archive/archive/**.md",
+			"BufNewFile" .. vim.expand("~") .. "/Documents/obsidian/archive/archive/**.md",
+		},
 		dependencies = {
 			-- Required.
 			"nvim-lua/plenary.nvim",
@@ -105,6 +112,17 @@ local plugins = {
 
 			-- see below for full list of options 👇
 		},
+	},
+	{
+		"akinsho/flutter-tools.nvim",
+		lazy = false,
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"stevearc/dressing.nvim", -- optional for vim.ui.select
+		},
+		config = function()
+			require("flutter-tools").setup({}) -- use defaults
+		end,
 	},
 	-- To make a plugin not be loaded
 	-- {
